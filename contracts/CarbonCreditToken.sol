@@ -4,6 +4,8 @@ pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
+// Force recompile
+
 /**
  * @title CarbonCreditToken
  * @dev Un token ERC-20 représentant des crédits carbone échangeables.

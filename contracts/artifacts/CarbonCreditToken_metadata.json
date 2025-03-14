@@ -634,11 +634,11 @@
 			]
 		},
 		"CarbonCreditChain/contracts/CarbonCreditToken.sol": {
-			"keccak256": "0x7b7fc12d9a9bc5978a190f78980e5d610901f2151759adc540bc04cb26119ace",
+			"keccak256": "0xbbf6350bb0cca9b04031e5a16ce008a6a8993dba0b6b5a110382903d17aabc18",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://237201c0e2c49293ed2831e1bcf3a527c8e049e0fea1d7dde4d6eeedd8e1f82f",
-				"dweb:/ipfs/Qmb6TN5XVDVvk8utQRRn2MeM5kwB7xHt4sQ5UjAawhPRUb"
+				"bzz-raw://3177e2e9ec341d30bd637a7f9b3cb9a0497685adb58ab77d143ac78c752f4162",
+				"dweb:/ipfs/QmX7aKsDCx9gHPFrLmByrgnqwnkt4jr26ZMLimQKY4b6d3"
 			]
 		}
 	},
