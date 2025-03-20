@@ -15,7 +15,10 @@ contract CarbonCreditToken is ERC20, Ownable {
      * @dev Constructeur du contrat.
      * Définit le nom et le symbole du token, et attribue 1 000 000 crédits initiaux.
      */
-    constructor() ERC20("Carbon Credit Token", "CCT") Ownable(msg.sender) {
+    constructor() ERC20("Carbon Credit Token", "CCT") Ownable() {
+        // Dans les versions récentes d'OpenZeppelin, Ownable() ne prend pas d'argument.
+        // L'owner par défaut est l'adresse qui déploie le contrat (msg.sender).
+        
         _mint(msg.sender, 1000000 * 10 ** decimals());
     }
 

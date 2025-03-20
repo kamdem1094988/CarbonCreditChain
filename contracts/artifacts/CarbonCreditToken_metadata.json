@@ -571,7 +571,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"CarbonCreditChain/contracts/CarbonCreditToken.sol": "CarbonCreditToken"
+			"contracts/CarbonCreditToken.sol": "CarbonCreditToken"
 		},
 		"evmVersion": "cancun",
 		"libraries": {},
@@ -633,12 +633,12 @@
 				"dweb:/ipfs/Qmax9WHBnVsZP46ZxEMNRQpLQnrdE4dK8LehML1Py8FowF"
 			]
 		},
-		"CarbonCreditChain/contracts/CarbonCreditToken.sol": {
-			"keccak256": "0xbbf6350bb0cca9b04031e5a16ce008a6a8993dba0b6b5a110382903d17aabc18",
+		"contracts/CarbonCreditToken.sol": {
+			"keccak256": "0x9bbc4cf7b60cf3e707bb8114f8d169b3ac5209c7d7a03acbc06f4d350c505150",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://3177e2e9ec341d30bd637a7f9b3cb9a0497685adb58ab77d143ac78c752f4162",
-				"dweb:/ipfs/QmX7aKsDCx9gHPFrLmByrgnqwnkt4jr26ZMLimQKY4b6d3"
+				"bzz-raw://e6e2f40009f6e693ec9164e4190c6945df2ae34c55e392be0262c5507657a0bc",
+				"dweb:/ipfs/QmSM23VoBohJrPabQjyr3Fr1kDNXSuMPwRvUEv3feMhGQe"
 			]
 		}
 	},
