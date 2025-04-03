@@ -1,0 +1,25 @@
+pour voir les colones disponible 
+dataTableTrain.Properties.VariableNames
+
+
+charge la variable a chaque session 
+load('myDataSelected.mat');
+whos dataSelected  % Vérifie sa présence
+head(dataSelected)
+
+;;je charge le dataset 
+load('myDataSelected.mat');
+affiche les premiere ligne 
+head(dataSelected)
+ affiche toute les donnees 
+ dataSelected   
+; execution de futurdesigner
+diagnosticFeatureDesigner
+sauvegarder et charger les features 
+save('FeatureTable1.mat', 'FeatureTable1');
+load('FeatureTable1.mat');
+
+GENERER LA FONCTION DANS FEATURE DESIGNER
+diagnosticFeatureDesigner
+APPELER LA FONCTION DE GENERATION DE FEATURE 
+featureTableTest = diagnosticFeatures(dataSelected);

@@ -2,40 +2,46 @@
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
-
-// Force recompile
+import "@openzeppelin/contracts/access/AccessControl.sol";
 
 /**
  * @title CarbonCreditToken
- * @dev Un token ERC-20 représentant des crédits carbone échangeables.
+ * @dev Un token ERC-20 che rappresenta crediti di carbonio, con una gestione avanzata degli accessi tramite AccessControl.
  */
-contract CarbonCreditToken is ERC20, Ownable {
+contract CarbonCreditToken is ERC20, AccessControl {
+    // Definiamo il ruolo di MINTER_ROLE usando il keccak256 della stringa "MINTER_ROLE"
+    bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
+
     /**
-     * @dev Constructeur du contrat.
-     * Définit le nom et le symbole du token, et attribue 1 000 000 crédits initiaux.
+     * @dev Costruttore del contratto.
+     * Imposta il nome e il simbolo del token, assegna 1.000.000 di token al deployer,
+     * e assegna al deployer sia il ruolo di amministratore predefinito che il ruolo di minter.
      */
-    constructor() ERC20("Carbon Credit Token", "CCT") Ownable() {
-        // Dans les versions récentes d'OpenZeppelin, Ownable() ne prend pas d'argument.
-        // L'owner par défaut est l'adresse qui déploie le contrat (msg.sender).
-        
+    constructor() ERC20("Carbon Credit Token", "CCT") {
+        // Il deployer viene automaticamente assegnato al ruolo DEFAULT_ADMIN_ROLE
+        _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
+        // Assegna anche il ruolo di MINTER_ROLE al deployer
+        _setupRole(MINTER_ROLE, msg.sender);
+
+        // Mint iniziale: 1.000.000 di token (considerando 18 decimali)
         _mint(msg.sender, 1000000 * 10 ** decimals());
     }
 
     /**
-     * @notice Permet à l'owner de créer de nouveaux crédits carbone.
-     * @dev Seul l'owner peut appeler cette fonction.
-     * @param to L'adresse qui recevra les crédits carbone créés.
-     * @param amount Le nombre de crédits carbone à générer.
+     * @notice Funzione per creare nuovi token.
+     * @dev Solo i conti con il ruolo MINTER_ROLE possono chiamare questa funzione.
+     * @param to L'indirizzo che riceverà i token creati.
+     * @param amount Il numero di token da creare.
      */
-    function mint(address to, uint256 amount) public onlyOwner {
+    function mint(address to, uint256 amount) public {
+        require(hasRole(MINTER_ROLE, msg.sender), "Caller is not a minter");
         _mint(to, amount);
     }
 
     /**
-     * @notice Permet à un utilisateur de brûler ses propres crédits carbone.
-     * @dev Supprime définitivement des crédits de l'offre totale.
-     * @param amount Le nombre de crédits carbone à détruire.
+     * @notice Funzione per bruciare token.
+     * @dev Permette a chiunque di bruciare i propri token.
+     * @param amount Il numero di token da bruciare.
      */
     function burn(uint256 amount) public {
         _burn(msg.sender, amount);

@@ -1,23 +1,20 @@
 import { HardhatUserConfig } from "hardhat/config";
 import "@nomiclabs/hardhat-ethers";
-import "@nomiclabs/hardhat-waffle";
-
 
 const config: HardhatUserConfig = {
-  solidity: {
-    // Au lieu de "version: '0.8.x'", on utilise "compilers"
-    compilers: [
-      { version: "0.8.20" }, // couvre ^0.8.20
-      { version: "0.8.19" }, // couvre ^0.8.19
-      { version: "0.8.4" },  // couvre ^0.8.4
-      { version: "0.8.2" },  // etc.
-      { version: "0.8.0" }
-    ],
-  },
+  solidity: "0.8.20", // ou la version que vous utilisez
   networks: {
+    besuLocal: {
+      url: "http://127.0.0.1:8545",  // URL de votre nœud Besu
+      chainId: 1337,                // Assurez-vous que le chainId correspond à celui défini dans votre genesis.json
+      // Vous pouvez ajouter ici une clé privée si nécessaire, par exemple :
+      // accounts: ["0xVotreClePrivee1", "0xVotreClePrivee2"]
+    },
+    // Optionnel : configuration pour localhost (Hardhat Node par exemple)
     localhost: {
       url: "http://127.0.0.1:8545",
-    },
+      chainId: 1337,
+    }
   },
 };
 

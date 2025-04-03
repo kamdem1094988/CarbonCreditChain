@@ -1,0 +1,43 @@
+Routes Protégées (token JWT requis)
+POST http://localhost:3000/games
+Crée une nouvelle partie. (Protégée)
+
+POST http://localhost:3000/games/:id/move
+Permet d'effectuer un mouvement dans une partie donnée (remplacer :id par l'ID de la partie). (Protégée)
+
+GET http://localhost:3000/games/:id/history
+Récupère l'historique des mouvements d'une partie spécifique. (Protégée)
+
+GET http://localhost:3000/games/history
+Récupère l'historique des parties terminées.
+(Protégée — ajoutez ?download=true pour forcer le téléchargement du JSON)
+
+GET http://localhost:3000/games/:id/status
+Évalue l'état d'une partie (tour, échec, échec et mat, etc.) et gère les points. (Protégée)
+
+POST http://localhost:3000/admin/recharge
+Permet à un administrateur de recharger le crédit d'un utilisateur. (Protégée — accès réservé aux administrateurs)
+
+Routes Non Protégées
+POST http://localhost:3000/login
+Authentifie l'utilisateur et retourne un token JWT. (Non protégée)
+
+GET http://localhost:3000/ranking
+Renvoie la liste des utilisateurs triés par score. (Non protégée)
+
+liste sde mouvement valide 
+{
+  "from": "g1",
+  "to": "f3"
+}
+
+
+{
+  "from": "a2",
+  "to": "a4"
+}
+
+{
+  "from": "b1",
+  "to": "a3"
+}

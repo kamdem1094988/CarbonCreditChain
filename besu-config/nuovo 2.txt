@@ -1,0 +1,7 @@
+ 	$fieldsyntax(ck_export)="DIM"
+	;Inizio Diego 31.05.2016
+if (B4 = 1)
+	$fieldsyntax(ck_export)=""
+else
+	$fieldsyntax(ck_export)="DIM"
+endif

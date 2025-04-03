@@ -1,0 +1,50 @@
+1 charge 
+prepareData
+2 charge les clolones 
+whos dataSelected
+head(dataSelected)
+3-charge les features 
+
+load('FeatureTable1.mat');
+whos
+4-affiche la table et les features
+ 
+head(featureTableTest)
+featureTableTest.Properties.VariableNames
+jaffiche les  premieres lignes 
+head(FeatureTable1)
+taille de table 
+size(FeatureTable1)
+5-charger fault code 
+load('FeatureTable1.mat')
+6-charger la structure 
+head(FeatureTable1)
+7-ranking anova 
+rankingANOVA
+% ou anova_analysis
+8-selection des features 
+sum(pValues < 0.05)
+bestFeatureNames
+8-classification par script 
+rankingAndClassification
+9-classification via classification learner 
+classificationLearner
+10-model entrainer du classificator learner 
+load('trainedModel2.mat');
+whos trainedModel2
+11-charger le meilleur model 
+load('trainedModelBest.mat');
+predictedLabels = trainedModelBest.predictFcn(newData);
+
+
+
+
+leprof a bcp parler de diagnosticFeatures
+
+besu ^
+  --genesis-file=""C:\Users\patrice.kamdemdefo_s\Desktop\CarbonCreditChain\besu-config\genesis.json" ^
+  --data-path="data" ^
+  --rpc-http-enabled ^
+  --rpc-http-port=8545 ^
+  --rpc-http-api=ETH,NET,WEB3,CLIQUE ^
+  --host-allowlist="*"
