@@ -1,37 +1,36 @@
 
 # Corso di software security AA.2024/2025
-
 # CarbonCreditChain
 
-Questo progetto ha l'obiettivo di sviluppare e implementare una soluzione per la gestione dei crediti di carbonio tramite smart contract su una blockchain privata. Abbiamo realizzato un token ERC-20 denominato **CarbonCreditToken**, integrando la soluzione con Hyperledger Besu per simulare un ambiente blockchain di test.
+Questo progetto ha l'obiettivo di sviluppare una soluzione per la gestione dei crediti di carbonio tramite smart contract su una blockchain privata. Abbiamo implementato un token ERC-20, denominato **CarbonCreditToken**, utilizzando le librerie di OpenZeppelin e testato il suo funzionamento con Hardhat. Inoltre, il progetto è integrato con Hyperledger Besu, eseguito in locale tramite Docker, per simulare un ambiente blockchain realistico.
 
-## Obiettivi e Lavori Svolti
+## Obiettivi del Progetto
 
-- **Sviluppo dello Smart Contract**  
-  - Implementazione di un token ERC-20 per i crediti di carbonio.
-  - Aggiunta di funzioni per il minting e il burning dei token.
-  - Gestione dei ruoli tramite OpenZeppelin AccessControl per garantire la sicurezza delle operazioni (ad es. `grantRole`, `revokeRole`).
+- **Sviluppo dello Smart Contract**
+  - Implementazione di un token ERC-20 che rappresenta i crediti di carbonio.
+  - Funzioni principali: mint, burn, transfer, approve, transferFrom.
+  - Gestione dei ruoli (es. MINTER_ROLE) tramite OpenZeppelin AccessControl per garantire la sicurezza e il controllo delle operazioni.
 
-- **Test e Validazione**  
-  - Creazione di test unitari con Hardhat per verificare il comportamento del contratto.
-  - Deploy e interazione manuale con il contratto tramite Remix, utilizzando l’ambiente JavaScript VM (London) per test locali.
-  - Verifica della corretta allocazione dei fondi e della gestione dei ruoli.
+- **Test e Validazione**
+  - Utilizzo di Hardhat per scrivere ed eseguire test unitari che verificano il corretto funzionamento delle funzioni del contratto.
+  - Verifica anche dei casi di errore (ad esempio, tentativi di mint da parte di account non autorizzati o trasferimenti con saldo insufficiente).
+  - Analisi degli eventi emessi (es. l’evento Transfer) per monitorare le operazioni.
 
-- **Integrazione con Besu**  
-  - Configurazione di un nodo Besu in locale (tramite Docker) utilizzando un file `genesis.json` personalizzato.
-  - Avvio e sincronizzazione del nodo su una rete privata (consenso IBFT o Clique, a seconda della configurazione).
-  - Utilizzo di Besu per simulare un ambiente blockchain realistico e per il deploy dei contratti.
+- **Integrazione con Besu**
+  - Configurazione di un nodo Besu locale eseguito tramite Docker.
+  - Utilizzo di un file `genesis.json` personalizzato per inizializzare la blockchain (con allocazione di fondi e impostazione del chainId).
+  - Possibilità di interagire con il nodo tramite Hardhat, Remix o altri strumenti.
 
 ## Requisiti
 
 - **Node.js** e **npm**
 - **Hardhat** per compilare e testare gli smart contract
-- **Remix IDE** per deploy e test manuali
-- **Docker** per eseguire un nodo Besu in locale
+- **Docker** per eseguire il nodo Besu in locale
+- **Remix IDE** (opzionale) per il deploy e test manuali
 
 ## Installazione
 
 1. Clonare il repository:
    ```bash
-   git clone <URL_DEL_REPOSITORY>
+   git clone <https://github.com/kamdem1094988/CarbonCreditChain.git>
    cd CarbonCreditChain
