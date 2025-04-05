@@ -6,12 +6,17 @@ const config: HardhatUserConfig = {
     networks: {
         besuLocal: {
             url: 'http://127.0.0.1:8545',
-            chainId: 2018, // ou 1337, selon votre genesis
+            chainId: 2018, // ou le chainId utilisé dans votre genesis
             accounts: [
-                // Listez ici vos clés privées (sans le 0x initial ou avec, selon la version de Hardhat).
-                // Exemple : "0xabcdef0123456789...."
-                '0xaaaaaa111111222222333333444444555555666666777777888888999999aaaa',
-                '0xbbbbbb111111222222333333444444555555666666777777888888999999bbbb',
+                // Remplacez par la clé privée du nouveau wallet (la chaîne doit commencer par "0x")
+                '0x484a1f39b1310cfea03068c5d2f3d485e7c8f5149f93dd9cf122c8ab7f5f73c3',
+            ],
+        },
+        localhost: {
+            url: 'http://127.0.0.1:8545',
+            chainId: 2018,
+            accounts: [
+                '0x484a1f39b1310cfea03068c5d2f3d485e7c8f5149f93dd9cf122c8ab7f5f73c3',
             ],
         },
     },
