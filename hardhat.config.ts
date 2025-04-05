@@ -5,9 +5,9 @@ const config: HardhatUserConfig = {
     networks: {
         besuLocal: {
             url: 'http://127.0.0.1:8545',
-            chainId: 2018, // ou le chainId utilisé dans votre genesis
+            chainId: 2018, //  chainId utilizzato dentro il genesis
             accounts: [
-                // Remplacez par la clé privée du nouveau wallet (la chaîne doit commencer par "0x")
+                // chiave prita del nuovo  wallet (la stringa deve iniziare per  "0x")
                 '0x484a1f39b1310cfea03068c5d2f3d485e7c8f5149f93dd9cf122c8ab7f5f73c3',
             ],
         },
@@ -20,7 +20,7 @@ const config: HardhatUserConfig = {
         },
     },
     mocha: {
-        timeout: 20000, // 20 secondes pour les tests asynchrones
+        timeout: 20000, // 20 secondi per i tests asynchroni
     },
 }
 
