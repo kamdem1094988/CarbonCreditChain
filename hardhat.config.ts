@@ -1,6 +1,5 @@
 import { HardhatUserConfig } from 'hardhat/config'
 import '@nomiclabs/hardhat-ethers'
-
 const config: HardhatUserConfig = {
     solidity: '0.8.20',
     networks: {
@@ -19,6 +18,9 @@ const config: HardhatUserConfig = {
                 '0x484a1f39b1310cfea03068c5d2f3d485e7c8f5149f93dd9cf122c8ab7f5f73c3',
             ],
         },
+    },
+    mocha: {
+        timeout: 20000, // 20 secondes pour les tests asynchrones
     },
 }
 

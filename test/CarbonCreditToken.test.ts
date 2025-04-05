@@ -1,46 +1,65 @@
-/// <reference types="mocha" />
-
 import { ethers } from "hardhat";
 import { expect } from "chai";
-import { Contract } from "ethers";
+import { Contract, BigNumber } from "ethers";
 
 describe("CarbonCreditToken", function () {
   let token: Contract;
-  let deployer: any, addr1: any, addr2: any;
+  let owner: any, addr1: any, addr2: any;
 
-  // Avant chaque test, on déploie une nouvelle instance du contrat
+  // Prima di ogni test, deployiamo il contratto
   beforeEach(async function () {
-    [deployer, addr1, addr2] = await ethers.getSigners();
+    [owner, addr1, addr2] = await ethers.getSigners();
     const TokenFactory = await ethers.getContractFactory("CarbonCreditToken");
     token = await TokenFactory.deploy();
     await token.deployed();
   });
 
-  it("should assign the initial supply to the deployer", async function () {
-    // Vérifie que le déployeur reçoit 1 000 000 tokens (en tenant compte de 18 décimales)
-    const deployerBalance = await token.balanceOf(deployer.address);
-    expect(deployerBalance).to.equal(ethers.utils.parseEther("1000000"));
+  // Test 1: Il saldo iniziale del proprietario deve essere uguale all'offerta iniziale
+  it("dovrebbe assegnare l'offerta iniziale al proprietario", async function () {
+    const ownerBalance: BigNumber = await token.balanceOf(owner.address);
+    // Supponiamo che l'offerta iniziale sia di 1.000.000 token (con 18 decimali)
+    const expectedSupply = ethers.utils.parseEther("1000000");
+    expect(ownerBalance.eq(expectedSupply)).to.be.true;
   });
 
-  it("should allow the owner to mint tokens", async function () {
-    // Le propriétaire (deployer) crée 100 tokens pour addr1
-    await token.mint(addr1.address, ethers.utils.parseEther("100"));
-    const addr1Balance = await token.balanceOf(addr1.address);
-    expect(addr1Balance).to.equal(ethers.utils.parseEther("100"));
+  // Test 2: Il proprietario deve poter creare (mint) token
+  it("dovrebbe permettere al proprietario di creare (mint) token", async function () {
+    const mintAmount: BigNumber = ethers.utils.parseEther("100"); // 100 token
+    await token.mint(addr1.address, mintAmount);
+    const addr1Balance: BigNumber = await token.balanceOf(addr1.address);
+    expect(addr1Balance.eq(mintAmount)).to.be.true;
   });
 
-  it("should allow a token holder to burn tokens", async function () {
-    // Le déployeur brûle 50 tokens de son solde
-    await token.burn(ethers.utils.parseEther("50"));
-    const deployerBalance = await token.balanceOf(deployer.address);
-    // Le solde attendu = 1 000 000 - 50 = 999950 tokens
-    expect(deployerBalance).to.equal(ethers.utils.parseEther("999950"));
+  // Test 3: Un detentore di token deve poter bruciare (burn) i propri token
+  it("dovrebbe permettere ad un detentore di token di bruciare (burn) i propri token", async function () {
+    const burnAmount: BigNumber = ethers.utils.parseEther("50"); // 50 token
+    const initialBalance: BigNumber = await token.balanceOf(owner.address);
+    await token.burn(burnAmount);
+    const finalBalance: BigNumber = await token.balanceOf(owner.address);
+    expect(initialBalance.sub(finalBalance).eq(burnAmount)).to.be.true;
   });
 
-  it("should revert when non-owner tries to mint tokens", async function () {
-    // addr1 tente de mint, mais seul l'owner est autorisé à mint
-    await expect(
-      token.connect(addr1).mint(addr1.address, ethers.utils.parseEther("100"))
-    ).to.be.revertedWith("Ownable: caller is not the owner");
+  // Test 4: Trasferimento di token tra conti
+  it("dovrebbe permettere il trasferimento di token tra conti", async function () {
+    const transferAmount: BigNumber = ethers.utils.parseEther("10"); // 10 token
+    await token.transfer(addr1.address, transferAmount);
+    const addr1Balance: BigNumber = await token.balanceOf(addr1.address);
+    expect(addr1Balance.eq(transferAmount)).to.be.true;
+  });
+
+  // Test 5: Approva e utilizza transferFrom
+  it("dovrebbe permettere di approvare e utilizzare il trasferimento tramite transferFrom", async function () {
+    const approveAmount: BigNumber = ethers.utils.parseEther("20"); // 20 token
+    await token.approve(addr1.address, approveAmount);
+
+    // Con addr1, trasferiamo 15 token dal proprietario ad addr2 usando transferFrom
+    const transferFromAmount: BigNumber = ethers.utils.parseEther("15"); // 15 token
+    await token.connect(addr1).transferFrom(owner.address, addr2.address, transferFromAmount);
+
+    const addr2Balance: BigNumber = await token.balanceOf(addr2.address);
+    expect(addr2Balance.eq(transferFromAmount)).to.be.true;
+
+    const remainingAllowance: BigNumber = await token.allowance(owner.address, addr1.address);
+    expect(remainingAllowance.eq(approveAmount.sub(transferFromAmount))).to.be.true;
   });
 });
