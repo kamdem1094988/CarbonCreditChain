@@ -5,6 +5,24 @@
 Questo progetto ha l'obiettivo di sviluppare una soluzione per la gestione dei crediti di carbonio tramite smart contract su una blockchain privata. Abbiamo implementato un token ERC-20, denominato **CarbonCreditToken**, utilizzando le librerie di OpenZeppelin e testato il suo funzionamento con Hardhat. Inoltre, il progetto è integrato con Hyperledger Besu, eseguito in locale tramite Docker, per simulare un ambiente blockchain realistico.
 
 ## Obiettivi del Progetto
+## Descrizione del Diagramma ISTAR
+Il diagramma ISTAR illustra le interazioni e le dipendenze tra i principali attori e il sistema di gestione dei crediti di carbonio. In questo diagramma:
+
+Attori:
+
+Amministratore/Proprietario: Richiede funzionalità sicure per la creazione (mint) e la distruzione (burn) dei token.
+
+Azienda: Esige affidabilità e tracciabilità delle transazioni.
+
+Auditor: Necessita di accesso ai log e report per condurre audit di sicurezza.
+
+Acquirente/Investitore: Richiede un marketplace trasparente e sicuro per il trading dei crediti.
+
+Sistema:
+Il sistema di gestione dei CarbonCreditToken fornisce tutte le funzionalità necessarie per rispondere alle richieste degli attori, garantendo sicurezza, controllo e trasparenza nelle operazioni.
+
+Il diagramma evidenzia come ogni attore "richiede" specifiche funzioni, che il sistema "fornisce" per soddisfare tali esigenze, assicurando così una gestione integrata e sicura dei crediti di carbonio.
+![image](https://github.com/user-attachments/assets/44691e1f-a928-4c80-ab32-40fad6954c30)
 
 - **Sviluppo dello Smart Contract**
   - Implementazione di un token ERC-20 che rappresenta i crediti di carbonio.
