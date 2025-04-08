@@ -1,16 +1,16 @@
-# Dossiers générés par Hardhat
+# Dossiers generati per  Hardhat
 artifacts/
 cache/
 
 # Node modules
 node_modules/
 
-# Dossiers spécifiques à Remix
+# Dossiers spécifici à Remix
 .deps/
 .states/
 
-# Fichiers de logs
+# Fichiers di logs
 *.log
 
-# Éventuels fichiers de configuration sensible
+# Éventuels fichiers di configurazioni sensible
 .env
