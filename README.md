@@ -1,9 +1,10 @@
 
 # Corso di software security AA.2024/2025
-# CarbonCreditChain
+# ITA CarbonCreditChain
 
 Questo progetto ha l'obiettivo di sviluppare una soluzione per la gestione dei crediti di carbonio tramite smart contract su una blockchain privata. Abbiamo implementato un token ERC-20, denominato **CarbonCreditToken**, utilizzando le librerie di OpenZeppelin e testato il suo funzionamento con Hardhat. Inoltre, il progetto è integrato con Hyperledger Besu, eseguito in locale tramite Docker, per simulare un ambiente blockchain realistico.
-
+# ENG CarbonCreditChain
+This project aims to develop a solution for managing carbon credits through smart contracts on a private blockchain. We have implemented an ERC-20 token, called **CarbonCreditToken**, using the OpenZeppelin libraries and tested its functionality with Hardhat. The project is also integrated with Hyperledger Besu, running locally via Docker, to simulate a realistic blockchain environment.
 ## Obiettivi del Progetto
 ## Descrizione del Diagramma ISTAR
 Il diagramma ISTAR illustra le interazioni e le dipendenze tra i principali attori e il sistema di gestione dei crediti di carbonio. In questo diagramma:
